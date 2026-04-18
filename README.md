@@ -76,16 +76,44 @@ ai-agents-example/
 ### Prerequisites
 
 1. **Python 3.9+**
-2. **Ollama** installed locally ([Instructions](https://ollama.ai))
+2. **Ollama** installed locally
 
-### Installation
+### Install Ollama (Mac/Linux/Windows)
+
+```bash
+# macOS
+brew install ollama
+
+# Linux
+curl -fsSL https://ollama.ai/install.sh | sh
+
+# Windows (WSL)
+curl -fsSL https://ollama.ai/install.sh | sh
+```
+
+Then start Ollama:
+```bash
+ollama serve
+```
+
+### Download Mistral Model
+
+```bash
+# Download Mistral model (recommended for these examples)
+ollama pull mistral
+
+# Or use a larger model
+ollama pull llama3.2
+
+# Or use a model optimized for function calling
+ollama pull qwen3:8b
+```
+
+### Install Python Dependencies
 
 ```bash
 # Install dependencies
 pip install openai-agents httpx python-dotenv requests pydantic
-
-# Or use the included Python
-/Users/matias.magni/miniconda3/bin/pip install openai-agents httpx python-dotenv requests pydantic
 ```
 
 ### Run Examples
