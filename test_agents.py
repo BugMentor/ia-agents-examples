@@ -30,7 +30,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 class TestUnitAddProduct:
     """L0: Test add_product function in isolation"""
 
-    def test_add_product_creates_new_file(self, tmp_path):
+    def test_L0_add_product_creates_new_file(self, tmp_path):
         """L0: Tool creates datos.json when it doesn't exist"""
         os.chdir(tmp_path)
 
@@ -46,7 +46,7 @@ class TestUnitAddProduct:
         assert len(data) == 1
         assert data[0]["name"] == "TestProduct"
 
-    def test_add_product_appends_to_existing(self, tmp_path):
+    def test_L0_add_product_appends_to_existing(self, tmp_path):
         """L0: Tool appends to existing datos.json"""
         os.chdir(tmp_path)
 
@@ -64,7 +64,7 @@ class TestUnitAddProduct:
         assert len(data) == 2
         assert data[1]["name"] == "NewProduct"
 
-    def test_add_product_invalid_json_handled(self, tmp_path):
+    def test_L0_add_product_invalid_json_handled(self, tmp_path):
         """L0: Tool handles corrupted JSON gracefully"""
         os.chdir(tmp_path)
 
@@ -83,7 +83,7 @@ class TestUnitAddProduct:
 class TestUnitPokemonTool:
     """L0: Test Pokemon tool function"""
 
-    def test_get_pokemon_info_success(self):
+    def test_L0_get_pokemon_info_success(self):
         """L0: Pokemon tool returns correct data"""
         from agent_multi import get_pokemon_info
 
@@ -95,7 +95,7 @@ class TestUnitPokemonTool:
 class TestUnitSimpsonsTool:
     """L0: Test Simpsons tool function"""
 
-    def test_get_simpsons_info_function_exists(self):
+    def test_L0_get_simpsons_info_function_exists(self):
         """L0: Simpsons tool function exists"""
         from agent_multi import get_simpsons_info
 
@@ -110,7 +110,7 @@ class TestUnitSimpsonsTool:
 class TestIntegrationTools:
     """L1: Test tools with real file I/O"""
 
-    def test_add_product_writes_correct_json(self, tmp_path):
+    def test_L1_add_product_writes_correct_json(self, tmp_path):
         """L1: add_product writes valid JSON"""
         os.chdir(tmp_path)
 
@@ -127,7 +127,7 @@ class TestIntegrationTools:
         assert data[0]["price"] == "999"
         assert data[0]["description"] == "Powerful computer"
 
-    def test_pokemon_tool_returns_string(self, tmp_path):
+    def test_L1_pokemon_tool_returns_string(self, tmp_path):
         """L1: Pokemon tool returns formatted string"""
         os.chdir(tmp_path)
 
@@ -159,7 +159,7 @@ class TestServiceOllama:
     """L2: Test Ollama API connectivity"""
 
     @pytest.mark.asyncio
-    async def test_ollama_connectivity(self):
+    async def test_L2_ollama_connectivity(self):
         """L2: Can connect to Ollama API"""
         try:
             async with httpx.AsyncClient() as client:
@@ -172,7 +172,7 @@ class TestServiceOllama:
             pytest.skip("Ollama not running - run 'ollama serve' first")
 
     @pytest.mark.asyncio
-    async def test_ollama_chat_basic(self):
+    async def test_L2_ollama_chat_basic(self):
         """L2: Ollama chat endpoint works"""
         try:
             async with httpx.AsyncClient() as client:
@@ -201,7 +201,7 @@ class TestE2EAgentSimple:
     """L3: Test full simple agent flow"""
 
     @pytest.mark.asyncio
-    async def test_simple_agent_adds_product(self, tmp_path):
+    async def test_L3_simple_agent_adds_product(self, tmp_path):
         """L3: Simple agent can add a product"""
         os.chdir(tmp_path)
 
@@ -224,7 +224,7 @@ class TestE2EAgentSimple:
         assert result is not None
         assert len(result) > 0
 
-    def test_simple_agent_files_exist(self):
+    def test_L3_simple_agent_files_exist(self):
         """L3: Agent file has required components"""
         from agent_example import TOOLS, SYSTEM_PROMPT, OllamaModel
 
@@ -236,7 +236,7 @@ class TestE2EAgentSimple:
 class TestE2EAgentMemory:
     """L3: Test agent with memory"""
 
-    def test_memory_agent_components(self):
+    def test_L3_memory_agent_components(self):
         """L3: Memory agent has required components"""
         from agent_memory import run_agent, TOOLS, SYSTEM_PROMPT, OllamaModel
 
@@ -246,7 +246,7 @@ class TestE2EAgentMemory:
         assert OllamaModel is not None
 
     @pytest.mark.asyncio
-    async def test_memory_agent_function(self, tmp_path):
+    async def test_L3_memory_agent_function(self, tmp_path):
         """L3: Memory agent function exists and is callable"""
         os.chdir(tmp_path)
 
@@ -259,7 +259,7 @@ class TestE2EAgentMemory:
 class TestE2EAgentMulti:
     """L3: Test multi-agent system"""
 
-    def test_multi_agent_components(self):
+    def test_L3_multi_agent_components(self):
         """L3: Multi-agent has coordinator and specialists"""
         from agent_multi import (
             coordinator,
@@ -276,7 +276,7 @@ class TestE2EAgentMulti:
         assert "get_pokemon_info" in TOOLS_POKEMON
 
     @pytest.mark.asyncio
-    async def test_multi_agent_pokemon_delegation(self, tmp_path):
+    async def test_L3_multi_agent_pokemon_delegation(self, tmp_path):
         """L3: Coordinator delegates to Pokemon specialist"""
         os.chdir(tmp_path)
 
