@@ -61,12 +61,25 @@ graph TD
 
 ```
 ai-agents-example/
-├── agent_example.py    # Simple agent with 1 tool
+├── agent_example.py     # Simple agent with 1 tool
 ├── agent_memory.py   # Agent with conversation history
 ├── agent_multi.py   # Multi-agent system (Coordinator + Specialists)
-├── data.json        # Product database
-├── README.md        # This file
-└── .env            # Environment variables (optional)
+├── data.json       # Product database
+├── README.md      # This file
+├── LICENSE       # MIT License
+├── .gitignore   # Git ignore
+├── tests/             # Test suite
+│   ├── __init__.py
+│   ├── test_agent_example.py   # Tests for simple agent
+│   ├── test_agent_memory.py   # Tests for memory agent
+│   └── test_agent_multi.py    # Tests for multi-agent
+├── scripts_unix/         # Scripts for macOS/Linux
+│   ├── run_agent_*.sh
+│   └── test_*.sh
+├── scripts_windows/    # Scripts for Windows
+│   ├── run_agent_*.bat
+│   └── test_*.bat
+└── .env             # Environment variables (optional)
 ```
 
 ---
@@ -449,6 +462,57 @@ coordinator = Agent(
     "description": "Smart device"
   }
 ]
+```
+
+---
+
+## 🧪 Test Suite
+
+This project uses a comprehensive L0-L3 testing pyramid:
+
+### Test Levels
+
+| Level | Name | Description | Tests |
+|-------|------|-------------|-------|
+| L0 | Unit | Individual components | 9 |
+| L1 | Integration | Tools work correctly | 5 |
+| L2 | Service | API calls work | 4 |
+| L3 | End-to-End | Full agent flows | 7 |
+
+**Total: 25 tests**
+
+### Run Tests
+
+```bash
+# All tests
+./scripts_unix/test_all.sh
+python -m pytest tests/ -v
+
+# By level
+./scripts_unix/test_l0.sh   # Unit tests
+./scripts_unix/test_l1.sh   # Integration tests
+./scripts_unix/test_l2.sh   # Service tests
+./scripts_unix/test_l3.sh   # E2E tests
+
+# By agent
+./scripts_unix/test_agent_example.sh  # Simple agent
+./scripts_unix/test_agent_memory.sh  # Memory agent
+./scripts_unix/test_agent_multi.sh   # Multi-agent
+
+# Windows
+scripts_windows\test_all.bat
+scripts_windows\test_l0.bat
+scripts_windows\test_agent_example.bat
+```
+
+### Test Structure
+
+```
+tests/
+├── __init__.py
+├── test_agent_example.py   # 8 tests for simple agent
+├── test_agent_memory.py  # 7 tests for memory agent
+└── test_agent_multi.py  # 10 tests for multi-agent
 ```
 
 ---
