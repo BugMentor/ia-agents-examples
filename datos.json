@@ -1,0 +1,67 @@
+[
+  {
+    "name": "Laptop",
+    "price": "999",
+    "description": "Powerful computer"
+  },
+  {
+    "name": "Phone",
+    "price": "599",
+    "description": "Smart device"
+  },
+  {
+    "name": "Tablet",
+    "price": "399",
+    "description": "Portable screen"
+  },
+  {
+    "name": "Watch",
+    "price": "199",
+    "description": "Smart wearable"
+  },
+  {
+    "name": "Headphones",
+    "price": "149",
+    "description": "Audio device"
+  },
+  {
+    "name": "TV",
+    "price": "599",
+    "description": "50 inch screen"
+  },
+  {
+    "name": "PS5",
+    "price": "499",
+    "description": "Gaming console"
+  },
+  {
+    "name": "matiasmagni",
+    "price": "120.00",
+    "description": "Matias Magni Designer Sneakers"
+  },
+  {
+    "name": "Camera",
+    "price": "299",
+    "description": "Takes photos"
+  },
+  {
+    "name": "Keyboard",
+    "price": "79",
+    "description": "Mechanical keyboard"
+  },
+  {
+    "name": "Drone",
+    "price": "599",
+    "description": "Flying camera"
+  },
+  {
+    "name": "iphone 15 pro",
+    "price": "USD 500",
+    "description": "blah blah blah"
+  },
+  {
+    "name": "",
+    "price": "",
+    "description": ""
+  }
+]
