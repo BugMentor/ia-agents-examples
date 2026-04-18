@@ -12,7 +12,7 @@ def add_product(name: str, price: str, description: str) -> str:
     """Add a product to the JSON database"""
     try:
         try:
-            with open("datos.json", "r", encoding="utf-8") as file:
+            with open("data.json", "r", encoding="utf-8") as file:
                 data = json.load(file)
         except (FileNotFoundError, json.JSONDecodeError):
             data = []
@@ -20,7 +20,7 @@ def add_product(name: str, price: str, description: str) -> str:
         new_product = {"name": name, "price": price, "description": description}
 
         data.append(new_product)
-        with open("datos.json", "w", encoding="utf-8") as file:
+        with open("data.json", "w", encoding="utf-8") as file:
             json.dump(data, file, indent=2, ensure_ascii=False)
 
         return f"Product '{name}' added successfully!"

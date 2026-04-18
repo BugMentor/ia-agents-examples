@@ -64,7 +64,7 @@ ai-agents-example/
 ├── agent_example.py    # Simple agent with 1 tool
 ├── agent_memory.py   # Agent with conversation history
 ├── agent_multi.py   # Multi-agent system (Coordinator + Specialists)
-├── datos.json       # Product database
+├── data.json        # Product database
 ├── README.md        # This file
 └── .env            # Environment variables (optional)
 ```
@@ -154,7 +154,7 @@ agent = Agent(
 **Key Concepts:**
 - `@function_tool` decorator for tool definition
 - Tool receives: `name`, `price`, `description`
-- Tool acts: writes to `datos.json`
+- Tool acts: writes to `data.json`
 - Agent reasoning: decides WHEN to call the tool
 
 **Run:**
@@ -434,7 +434,7 @@ coordinator = Agent(
 
 ## 📋 Data Files
 
-### `datos.json`
+### `data.json`
 
 ```json
 [

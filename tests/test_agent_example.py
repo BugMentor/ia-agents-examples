@@ -22,30 +22,30 @@ class TestUnitAddProduct:
     """L0: Test add_product function in isolation"""
 
     def test_L0_add_product_creates_new_file(self, tmp_path):
-        """L0: Tool creates datos.json when it doesn't exist"""
+        """L0: Tool creates data.json when it doesn't exist"""
         os.chdir(tmp_path)
 
         result = agent_example.add_product("TestProduct", "99", "Test description")
 
         assert "TestProduct" in result
-        assert os.path.exists("datos.json")
+        assert os.path.exists("data.json")
 
-        with open("datos.json") as f:
+        with open("data.json") as f:
             data = json.load(f)
         assert len(data) == 1
         assert data[0]["name"] == "TestProduct"
 
     def test_L0_add_product_appends_to_existing(self, tmp_path):
-        """L0: Tool appends to existing datos.json"""
+        """L0: Tool appends to existing data.json"""
         os.chdir(tmp_path)
 
         existing_data = [{"name": "Existing", "price": "50", "description": "Test"}]
-        with open("datos.json", "w") as f:
+        with open("data.json", "w") as f:
             json.dump(existing_data, f)
 
         result = agent_example.add_product("NewProduct", "100", "New desc")
 
-        with open("datos.json") as f:
+        with open("data.json") as f:
             data = json.load(f)
 
         assert len(data) == 2
@@ -55,7 +55,7 @@ class TestUnitAddProduct:
         """L0: Tool handles corrupted JSON gracefully"""
         os.chdir(tmp_path)
 
-        with open("datos.json", "w") as f:
+        with open("data.json", "w") as f:
             f.write("invalid json {{{")
 
         result = agent_example.add_product("Product", "10", "desc")
@@ -75,7 +75,7 @@ class TestIntegrationAddProduct:
 
         assert "added successfully" in result.lower()
 
-        with open("datos.json") as f:
+        with open("data.json") as f:
             data = json.load(f)
 
         assert data[0]["name"] == "Laptop"
